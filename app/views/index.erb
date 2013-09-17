@@ -1,0 +1,7 @@
+<h1>Welcome to OurList.com!</h1>
+<p>Select a category:</p>
+<ul>
+<% @categories.each do |category| %>
+  <a href="/category/<%= category.id %>"><li><%= category.title %></li></a>
+<% end %>
+</ul>
