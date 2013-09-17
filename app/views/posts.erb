@@ -1,5 +1,7 @@
 <h1>Here are the <%= @category.title %> posts!</h1>
 <ul>
-<% @posts.each do |post| %>
-
+  <% @posts.each do |post| %>
+    <a href="/category/<%= @category.id %>/post/<%= post.id %>"><li><%= post.title %></li></a>
+  <% end %>
 </ul>
+
