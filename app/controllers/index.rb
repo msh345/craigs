@@ -9,9 +9,9 @@ get '/category/:id' do
   erb :posts
 end
 
-get '/category/:category_id/post/:post_id' do
-  @listing = Post.find(params[:post_id])
-  erb :listing
+get '/post/:id' do
+  @post = Post.find(params[:id])
+  erb :post
 end
 
 get '/new' do
@@ -19,9 +19,26 @@ get '/new' do
   erb :new
 end
 
+get '/post/:id/edit/:key' do
+  @post = Post.find(params[:id])
+  erb :edit
+end
+
 
 post '/new' do
+  o = [('a'..'z'), ('A'..'Z')].map { |i| i.to_a }.flatten
+  key = (0...5).map{ o[rand(o.length)] }.join
+  hash = params[:post].merge!({:key => key})
   category = Category.find(params[:category]) 
-  @listing = category.posts.create(params[:post])
-  erb :listing
+  @post = category.posts.create(hash)
+  redirect to "/post/#{@post.id}/edit/#{@post.key}"
+end
+
+post '/post/:id' do
+  @post = Post.find(params[:id])
+  if @post.update_attributes(params[:post])
+    redirect to "/post/#{params[:id]}"
+  else
+    erb :edit
+  end
 end

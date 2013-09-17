@@ -1,19 +1,10 @@
 <h1>Create a new post</h1>
 <form action="/new" method="POST">
-  <label for="title">Title: </label>
-  <input id="title" type="text" name="post[title]"><br>
-  <label for="price">Price: </label>
-  <input id="price" type="text" name="post[price]"><br>
-  <label for="text">Text: </label>
-  <input id="text" type="text" name="post[text]"><br>
-  <label for="location">Location: </label>
-  <input id="location" type="text" name="post[location]"><br>
   <select name="category">
   <% @categories.each do |category| %>
       <option value="<%= category.id %>"><%= category.title %></option>
   <% end %>
-  </select>
+  </select><br>
+  <%= erb :_form_fields, layout: false %>
 
-
-  <input type="submit">
 </form>
