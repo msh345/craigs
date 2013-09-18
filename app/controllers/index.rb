@@ -42,3 +42,10 @@ post '/post/:id' do
     erb :edit
   end
 end
+
+get '/post/:id/delete' do
+  @post = Post.find(params[:id])
+  @post.destroy
+  redirect to ('/')
+end
+

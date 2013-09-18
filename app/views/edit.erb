@@ -1,5 +1,8 @@
 <h1>Edit Post</h1>
 <form action="/post/<%= @post.id %>" method="POST">
   <%= erb :_form_fields, layout: false %>
-  
+</form>
+
+<form action='/post/<%= @post.id %>/delete' method="GET">
+  <input type="submit" value="Delete">
 </form>
